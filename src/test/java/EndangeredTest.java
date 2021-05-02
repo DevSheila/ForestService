@@ -51,4 +51,10 @@ public class EndangeredTest {
         EndangeredAnimal anotherAnimal = new EndangeredAnimal("Saola", "endangered","ill","adult");
         assertFalse(testAnimal.equals(anotherAnimal));
     }
+    @Test
+    public void save_insertsObjectIntoDatabase() {
+        EndangeredAnimal testAnimal = new EndangeredAnimal("Bonobo", "endangered","ill","adult");
+        testAnimal.save();
+        assertTrue(Animal.getAllCommon().get(0).equals(testAnimal));
+    }
 }

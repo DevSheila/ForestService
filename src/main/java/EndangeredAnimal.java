@@ -20,6 +20,22 @@ public class EndangeredAnimal extends Animal implements DbManagement {
         this.type = type;
 
     }
+    @Override
+    public void save() {
+        if(this.name.equals("") ||this.type.equals("")||this.health.equals("")||this.age.equals("")){
+            throw new IllegalArgumentException("Fill in all fields");
+        }
+        try(Connection con = DB.sql2o.open()){
+            String sql ="INSERT INTO animals (name,type,health,age) VALUES(:name,:type,:health,:age)";
+            this.id = (int) con.createQuery(sql,true)
+                    .addParameter("name",this.name)
+                    .addParameter("type",this.type)
+                    .addParameter("health",this.health)
+                    .addParameter("age",this.age)
+                    .executeUpdate()
+                    .getKey();
+        }
 
+    }
 
 }
