@@ -108,4 +108,16 @@ public class Animal implements DbManagement {
 
     }
 
+    public static Animal find(int id){
+        String sql = "SELECT * FROM animals WHERE id=:id";
+        try(Connection con = DB.sql2o.open()){
+            Animal animal = con.createQuery(sql)
+                    .addParameter("id",id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetchFirst(Animal.class);
+            return animal;
+
+        }
+    }
+
 }
