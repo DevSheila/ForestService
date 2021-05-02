@@ -75,4 +75,14 @@ public class AnimalTest {
         anotherAnimal.save();
         assertEquals(Animal.find(testAnimal.getId()), testAnimal);
     }
+
+    @Test
+    public void getAnimals_retrievesAllAnimalsFromDatabase_AnimalsList() {
+        Animal testAnimal = new Animal("Hare", "common");
+        Animal anotherAnimal = new Animal("Tiger", "common");
+        testAnimal.save();
+        anotherAnimal.save();
+        Object[] animals= new Object[] { testAnimal, anotherAnimal };
+        assertTrue(testAnimal.all().containsAll(Arrays.asList(animals)));
+    }
 }
