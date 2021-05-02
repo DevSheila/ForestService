@@ -67,8 +67,19 @@ public class Ranger implements DbManagement {
 
 
     @Override
-    public void update() {
-
+    public void update(){
+        if(this.name.equals("")||this.badge_number.equals("")||this.phone_number.equals("")||this.email.equals("")){
+            throw new IllegalArgumentException("Fill in all fields");
+        }
+        try(Connection con = DB.sql2o.open()){
+            String sql ="UPDATE rangers SET name:name,badge_number:badge_number,phone_number:phone_number,email:email";
+            con.createQuery(sql,true)
+                    .addParameter("name",this.name)
+                    .addParameter("badge_number",this.badge_number)
+                    .addParameter("phone_number",this.phone_number)
+                    .addParameter("ranger_email",this.email)
+                    .executeUpdate();
+        }
     }
     @Override
     public boolean equals(Object o) {
