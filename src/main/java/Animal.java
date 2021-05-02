@@ -93,6 +93,18 @@ public class Animal implements DbManagement {
 
     @Override
     public void update() {
+        if(this.name.equals(null)||this.type.equals(null)){
+            throw new IllegalArgumentException("Kindly fill in all fields");
+        }
+        try(Connection con = DB.sql2o.open()){
+            String sql ="UPDATE animals SET type:type health=:health,age=:age WHERE id:id";
+            con.createQuery(sql,true)
+                    .addParameter("type",this.type)
+                    .addParameter("health","")
+                    .addParameter("age","")
+                    .addParameter("id",this.id)
+                    .executeUpdate();
+        }
 
     }
 }
