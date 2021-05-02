@@ -85,4 +85,24 @@ public class AnimalTest {
         Object[] animals= new Object[] { testAnimal, anotherAnimal };
         assertTrue(testAnimal.all().containsAll(Arrays.asList(animals)));
     }
+    @Test
+    public void deleteById_deletesAnimal_true() {
+        Animal testAnimal = new Animal("Hare", "common");
+        Animal anotherAnimal = new Animal("Tiger", "common");
+        testAnimal.save();
+        anotherAnimal.save();
+        anotherAnimal.deleteById(anotherAnimal.getId());
+
+        assertEquals(1, Animal.all().size());
+    }
+    @Test
+    public void deleteAll_deletesAllAnimal_true() {
+        Animal testAnimal = new Animal("Hare", "common");
+        Animal anotherAnimal = new Animal("Tiger", "common");
+        testAnimal.save();
+        anotherAnimal.save();
+        Animal.deleteAll();
+
+        assertEquals(0, Animal.all().size());
+    }
 }
