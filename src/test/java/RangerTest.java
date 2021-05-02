@@ -44,4 +44,19 @@ public class RangerTest {
         assertEquals("dennis@gmail.com", testRanger.getEmail());
     }
 
+    @Test
+    public void equals_returnsTrueIfInstancesSame_true() {
+        Ranger testRanger = new Ranger("Dennis", "6574","28394835","dennis@gmail.com");
+        Ranger anotherRanger = new Ranger("Dennis", "6574","28394835","dennis@gmail.com");
+
+        assertTrue(testRanger.equals(anotherRanger));
+    }
+    @Test
+    public void equals_returnsFalseIfInstances_false() {
+        Ranger testRanger = new Ranger("Dennis", "6574","28394835","dennis@gmail.com");
+        Ranger anotherRanger = new Ranger("Makaila", "7896","0710617457","makaila@gmail.com");
+        assertFalse(testRanger.equals(anotherRanger));
+    }
+
+
 }

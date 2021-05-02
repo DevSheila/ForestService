@@ -45,4 +45,16 @@ public class Ranger implements DbManagement {
     public void update() {
 
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ranger)) return false;
+        Ranger ranger = (Ranger) o;
+        return Objects.equals(getBadgeNumber(), ranger.getBadgeNumber()) && Objects.equals(getEmail(), ranger.getEmail());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getBadgeNumber(), getEmail());
+    }
 }
