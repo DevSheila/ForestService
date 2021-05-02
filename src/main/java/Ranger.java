@@ -38,6 +38,21 @@ public class Ranger implements DbManagement {
 
     @Override
     public void save() {
+        try (Connection con=DB.sql2o.open()){
+            String sql="INSERT INTO rangers (name,badge_number,phone_number,email) VALUES (:name,:badge_number,:phone_number,:email)";
+            if(name.equals("")||badge_number.equals("")||phone_number.equals("")||email.equals("")){
+                throw new IllegalArgumentException("All fields must be filled");
+            }
+            this.id=(int) con.createQuery(sql,true)
+                    .addParameter("name",this.name)
+                    .addParameter("badge_number",this.badge_number)
+                    .addParameter("phone_number",this.phone_number)
+                    .addParameter("email",this.email)
+                    .executeUpdate()
+                    .getKey();
+
+
+        }
 
     }
 

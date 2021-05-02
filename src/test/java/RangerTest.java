@@ -58,5 +58,17 @@ public class RangerTest {
         assertFalse(testRanger.equals(anotherRanger));
     }
 
+    @Test
+    public void save_insertsObjectIntoDatabase_Ranger() {
+        Ranger testRanger = new Ranger("Dennis", "6574","28394835","dennis@gmail.com");
+        testRanger.save();
+        assertEquals("dennis@gmail.com",testRanger.getEmail());
+    }
+    @Test
+    public void save_assignsIdToRanger() {
+        Ranger testRanger = new Ranger("Dennis", "6574","28394835","dennis@gmail.com");
+        testRanger.save();
+        assertEquals(testRanger.getId(),Ranger.all().get(0).getId());
+    }
 
 }
