@@ -99,4 +99,24 @@ public class RangerTest {
         assertEquals(Ranger.find(testRanger.getId()), testRanger);
     }
 
+    @Test
+    public void deleteById_deletesAnimal_true() {
+        Ranger testRanger = new Ranger("Dennis", "6574","28394835","dennis@gmail.com");
+        Ranger anotherRanger = new Ranger("Makaila", "7896","0710617457","makaila@gmail.com");
+        testRanger.save();
+        anotherRanger.save();
+        anotherRanger.deleteById(anotherRanger.getId());
+
+        assertEquals(1,Ranger.all().size());
+    }
+    @Test
+    public void deleteAll_deletesAllAnimal_true() {
+        Ranger testRanger = new Ranger("Dennis", "6574","28394835","dennis@gmail.com");
+        Ranger anotherRanger = new Ranger("Makaila", "7896","0710617457","makaila@gmail.com");
+        testRanger.save();
+        anotherRanger.save();
+        Ranger.deleteAll();
+
+        assertEquals(0, Ranger.all().size());
+    }
 }

@@ -91,6 +91,22 @@ public class Ranger implements DbManagement {
             return ranger;
         }
     }
+    public void deleteById(int id) {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "DELETE FROM rangers WHERE id=:id";
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+    public static void deleteAll() {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "DELETE  FROM rangers *; ";
+            con.createQuery(sql)
+                    .executeUpdate();
+        }
+    }
 
 
     @Override
