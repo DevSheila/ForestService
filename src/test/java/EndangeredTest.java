@@ -38,4 +38,17 @@ public class EndangeredTest {
         EndangeredAnimal testAnimal = new EndangeredAnimal("Bonobo", "endangered","ill","adult");
         assertEquals("adult", testAnimal.getAge());
     }
+    @Test
+    public void equals_returnsTrueIfNameAndTypeAreSame_true() {
+        EndangeredAnimal testAnimal = new EndangeredAnimal("Bonobo", "endangered","ill","adult");
+        EndangeredAnimal anotherAnimal = new EndangeredAnimal("Saola", "endangered","ill","adult");
+
+        assertTrue(testAnimal.equals(anotherAnimal));
+    }
+    @Test
+    public void equals_returnsFalseIfNameAndTypeAreDifferent_false() {
+        EndangeredAnimal testAnimal = new EndangeredAnimal("Bonobo", "endangered","ill","adult");
+        EndangeredAnimal anotherAnimal = new EndangeredAnimal("Saola", "endangered","ill","adult");
+        assertFalse(testAnimal.equals(anotherAnimal));
+    }
 }
