@@ -30,4 +30,17 @@ public class AnimalTest {
         Animal testAnimal = new Animal("Hare", "common");
         assertEquals("common", testAnimal.getType());
     }
+
+    @Test
+    public void equals_returnsTrueIfNameAndTypeAreSame_true() {
+        Animal testAnimal = new Animal("Hare", "common");
+        Animal anotherAnimal = new Animal("Hare", "common");
+        assertTrue(testAnimal.equals(anotherAnimal));
+    }
+    @Test
+    public void equals_returnsFalseIfNameAndTypeAreDifferent_false() {
+        Animal testAnimal = new Animal("Hare", "engangered");
+        Animal anotherAnimal = new Animal("Tiger", "common");
+        assertFalse(testAnimal.equals(anotherAnimal));
+    }
 }
