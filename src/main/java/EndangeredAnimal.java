@@ -37,6 +37,16 @@ public class EndangeredAnimal extends Animal implements DbManagement {
         }
 
     }
+    public static EndangeredAnimal find(int id){
+        String sql = "SELECT * FROM animals WHERE id:id";
+        try(Connection con = DB.sql2o.open()){
+            EndangeredAnimal enAnimal = con.createQuery(sql)
+                    .addParameter("id",id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetchFirst(EndangeredAnimal.class);
+            return enAnimal;
 
+        }
+    }
 
 }

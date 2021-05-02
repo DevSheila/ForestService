@@ -70,5 +70,22 @@ public class EndangeredTest {
 
 
     }
+    @Test
+    public void find_returnsAnimalWithSameId_testAnimal() {
+        EndangeredAnimal testAnimal = new EndangeredAnimal("Bonobo", "endangered","ill","adult");
+        EndangeredAnimal anotherAnimal = new EndangeredAnimal("Saola", "endangered","ill","adult");
+        testAnimal.save();
+        anotherAnimal.save();
+        assertEquals(Animal.find(testAnimal.getId()), testAnimal);
+    }
 
+    @Test
+    public void getAnimals_retrievesAllAnimalsFromDatabase_AnimalsList() {
+        EndangeredAnimal testAnimal = new EndangeredAnimal("Bonobo", "endangered","ill","adult");
+        EndangeredAnimal anotherAnimal = new EndangeredAnimal("Saola", "endangered","ill","adult");
+        testAnimal.save();
+        anotherAnimal.save();
+        Object[] animals= new Object[] { testAnimal, anotherAnimal };
+        assertTrue(testAnimal.all().containsAll(Arrays.asList(animals)));
+    }
 }
