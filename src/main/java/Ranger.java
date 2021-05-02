@@ -16,6 +16,25 @@ public class Ranger implements DbManagement {
         this.phone_number = phone_number;
         this.email = email;
     }
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getBadgeNumber() {
+        return badge_number;
+    }
+
+    public String getPhoneNumber() {
+        return phone_number;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 
     @Override
     public void save() {

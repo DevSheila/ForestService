@@ -18,4 +18,30 @@ public class RangerTest {
 
         assertEquals(true, testRanger instanceof Ranger);
     }
+
+    @Test
+    public void getName_RangerInstantiatesWithName_Dennis() {
+        Ranger testRanger = new Ranger("Dennis", "6574","28394835","dennis@gmail.com");
+
+        assertEquals("Dennis", testRanger.getName());
+    }
+    @Test
+    public void getBadgeNumber_RangerInstantiatesWithBadgeNumber_True() {
+        Ranger testRanger = new Ranger("Dennis", "6574","28394835","dennis@gmail.com");
+
+        assertEquals("6574", testRanger.getBadgeNumber());
+    }
+    @Test
+    public void getPhoneNumber_RangerInstantiatesWithPhoneNumber_True() {
+        Ranger testRanger = new Ranger("Dennis", "6574","28394835","dennis@gmail.com");
+
+        assertEquals("28394835", testRanger.getPhoneNumber());
+    }
+    @Test
+    public void getEmail_RangerInstantiatesWithEmail_True() {
+        Ranger testRanger = new Ranger("Dennis", "6574","28394835","dennis@gmail.com");
+
+        assertEquals("dennis@gmail.com", testRanger.getEmail());
+    }
+
 }
