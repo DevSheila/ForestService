@@ -57,4 +57,18 @@ public class EndangeredTest {
         testAnimal.save();
         assertTrue(Animal.getAllCommon().get(0).equals(testAnimal));
     }
+    @Test
+    public void all_returnsAllInstancesOfAnimal_true() {
+        EndangeredAnimal testAnimal = new EndangeredAnimal("Bonobo", "endangered","ill","adult");
+        EndangeredAnimal anotherAnimal = new EndangeredAnimal("Saola", "endangered","ill","adult");
+
+        testAnimal.save();
+        anotherAnimal.save();
+
+        assertEquals(true, Animal.all().get(1).equals(anotherAnimal));
+        assertEquals(true, Animal.all().get(0).equals(testAnimal));
+
+
+    }
+
 }
