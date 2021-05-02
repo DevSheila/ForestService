@@ -90,5 +90,13 @@ public class RangerTest {
         Object[] rangers = new Object[] { testRanger, anotherRanger};
         assertTrue(testRanger.all().containsAll(Arrays.asList(rangers)));
     }
+    @Test
+    public void find_returnsRangerWithSameId_testRanger() {
+        Ranger testRanger = new Ranger("Dennis", "6574","28394835","dennis@gmail.com");
+        Ranger anotherRanger = new Ranger("Makaila", "7896","0710617457","makaila@gmail.com");
+        testRanger.save();
+        anotherRanger.save();
+        assertEquals(Ranger.find(testRanger.getId()), testRanger);
+    }
 
 }
