@@ -16,4 +16,14 @@ public class Ranger implements DbManagement {
         this.phone_number = phone_number;
         this.email = email;
     }
+
+    @Override
+    public void save() {
+
+    }
+
+    @Override
+    public void update() {
+
+    }
 }
