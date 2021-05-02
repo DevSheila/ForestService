@@ -70,5 +70,25 @@ public class RangerTest {
         testRanger.save();
         assertEquals(testRanger.getId(),Ranger.all().get(0).getId());
     }
+    @Test
+    public void all_returnsAllInstancesOfRangers_true() {
+        Ranger testRanger = new Ranger("Dennis", "6574","28394835","dennis@gmail.com");
+        Ranger anotherRanger = new Ranger("Makaila", "7896","0710617457","makaila@gmail.com");
+
+        testRanger.save();
+        anotherRanger.save();
+
+        assertEquals(true, Ranger.all().get(1).equals(anotherRanger));
+        assertEquals(true, Ranger.all().get(0).equals(testRanger));
+    }
+    @Test
+    public void getAnimals_retrievesAllRangersFromDatabase_RangersList() {
+        Ranger testRanger = new Ranger("Dennis", "6574","28394835","dennis@gmail.com");
+        Ranger anotherRanger = new Ranger("Makaila", "7896","0710617457","makaila@gmail.com");
+        testRanger.save();
+        anotherRanger.save();
+        Object[] rangers = new Object[] { testRanger, anotherRanger};
+        assertTrue(testRanger.all().containsAll(Arrays.asList(rangers)));
+    }
 
 }
