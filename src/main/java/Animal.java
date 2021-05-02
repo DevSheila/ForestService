@@ -70,6 +70,27 @@ public class Animal implements DbManagement {
 
     }
 
+    public static List<Animal> all(){
+        String sql = "SELECT * FROM animals ";
+        try(Connection con = DB.sql2o.open()){
+            return con.createQuery(sql)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(Animal.class);
+        }
+
+    }
+    public static List<Animal> getAllCommon(){
+        String sql = "SELECT * FROM animals WHERE type= 'common'";
+        try(Connection con = DB.sql2o.open()){
+            return con.createQuery(sql)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(Animal.class);
+        }
+
+    }
+
+
+
     @Override
     public void update() {
 
