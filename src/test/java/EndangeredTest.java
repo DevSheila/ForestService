@@ -17,4 +17,25 @@ public class EndangeredTest {
 
         assertEquals(true, testAnimal instanceof Animal);
     }
+
+    @Test
+    public void getName_AnimalInstantiatesWithName_Bonobo() {
+        EndangeredAnimal testAnimal = new EndangeredAnimal("Bonobo", "endangered","ill","adult");
+        assertEquals("Bonobo", testAnimal.getName());
+    }
+    @Test
+    public void getType_AnimalInstantiatesWithType_Common() {
+        EndangeredAnimal testAnimal = new EndangeredAnimal("Bonobo", "endangered","ill","adult");
+        assertEquals("endangered", testAnimal.getType());
+    }
+    @Test
+    public void getHealth_AnimalInstantiatesWithHealth_Ill() {
+        EndangeredAnimal testAnimal = new EndangeredAnimal("Bonobo", "endangered","ill","adult");
+        assertEquals("ill", testAnimal.getHealth());
+    }
+    @Test
+    public void getAge_AnimalInstantiatesWithAge_Adult() {
+        EndangeredAnimal testAnimal = new EndangeredAnimal("Bonobo", "endangered","ill","adult");
+        assertEquals("adult", testAnimal.getAge());
+    }
 }
