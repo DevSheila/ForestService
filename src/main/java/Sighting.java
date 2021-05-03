@@ -95,9 +95,23 @@ public class Sighting implements DbManagement {
         }
     }
 
+
     @Override
     public void update() {
+        if(this.animal_name.equals("")||this.location_id.equals("")||this.ranger_id== -1){
+            throw new IllegalArgumentException("Fill in all fields");
 
+        }
+        try(Connection con =DB.sql2o.open()){
+            String sql = "UPDATE sightings SET animal_name:animal_name,location_id:location_id,ranger_id:ranger_id";
+            this.id =(int)con.createQuery(sql,true)
+                    .addParameter("animal_name",this.animal_name)
+                    .addParameter("location_id",this.location_id)
+                    .addParameter("ranger_id",this.ranger_id)
+                    .executeUpdate()
+                    .getKey();
+
+        }
     }
 
 }
