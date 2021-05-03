@@ -61,6 +61,22 @@ public class Sighting implements DbManagement {
     }
     @Override
     public void save() {
+        if(this.animal_name.equals("")||this.location_id.equals(" ")||this.ranger_id == -1){
+            throw new IllegalArgumentException("All fields must be filled");
+        }
+        try(Connection con =DB.sql2o.open()) {
+//            String sql = "INSERT INTO sightings(animal_id,location_id,ranger_id,time) VALUES(:animal_id,:location_id,:ranger_id,:sightTime)";
+            String sql= "INSERT INTO sightings (animal_name,location_id,ranger_id,sight_time) VALUES (:animal_name,:location_id," +
+                    ":ranger_id,:sight_time)";
+
+            this.id = (int) con.createQuery(sql, true)
+                    .addParameter("animal_name", this.animal_name)
+                    .addParameter("location_id", this.location_id)
+                    .addParameter("ranger_id", this.ranger_id)
+                    .addParameter("sight_time", this.sight_time)
+                    .executeUpdate()
+                    .getKey();
+        }
 
     }
 

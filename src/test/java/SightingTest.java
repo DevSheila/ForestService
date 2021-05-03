@@ -62,4 +62,18 @@ public class SightingTest {
         assertFalse(testSighting.equals(anotherSighting));
     }
 
+    @Test
+    public void save_insertsObjectIntoDatabase_Sighting() {
+        Sighting testSighting= new Sighting("Tiger", "Zone 12",4567);
+        testSighting.save();
+        assertEquals(4567,testSighting.getRangerId());
+    }
+    @Test
+    public void save_assignsIdToSighting() {
+        Sighting testSighting= new Sighting("Tiger", "Zone 12",4567);
+
+        testSighting.save();
+        assertEquals(testSighting.getId(),Sighting.all().get(0).getId());
+    }
+
 }
