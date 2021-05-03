@@ -26,6 +26,26 @@ public class Sighting implements DbManagement {
         this.ranger_id = ranger_id;
         this.sight_time = dateFormat.format(new Timestamp(now.getTime()));
     }
+    public int getId() {
+        return id;
+    }
+
+    public String getAnimalName() {
+        return animal_name;
+    }
+
+
+
+    public String getLocation() {
+        return location_id;
+    }
+
+    public int getRangerId() {
+        return ranger_id;
+    }
+    public String getSightTime() {
+        return sight_time;
+    }
 
     @Override
     public void save() {
