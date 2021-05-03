@@ -108,5 +108,69 @@ public class App {
             return new ModelAndView(model, "animals-view.hbs");
 
         }, new HandlebarsTemplateEngine());
+
+        //rangers routes
+        post("/rangers/new", (request, response) -> {
+
+            Map<String, Object> model = new HashMap<>();
+
+            String name = request.queryParams("name");
+            String badge_number=request.queryParams("badge_number");
+            String phone_number=request.queryParams("phone_number");
+            String email=request.queryParams("email");
+
+
+            Ranger newRanger = new Ranger(name,badge_number,phone_number,email);
+            newRanger.save();
+
+            model.put("rangers", newRanger);
+            return new ModelAndView(model, "rangers-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+//        2.READ
+
+        get("/rangers/form",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            return new ModelAndView(model,"rangers-form.hbs");
+        },new HandlebarsTemplateEngine());
+
+        get("/rangers/view",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            model.put("rangers",Ranger.all());
+            return new ModelAndView(model,"rangers-view.hbs");
+        },new HandlebarsTemplateEngine());
+
+
+        get("/rangers/sighting/:id",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            int rangerId=Integer.parseInt(request.params(":id"));
+
+            model.put("rangerId",rangerId);
+            model.put("sightings",Sighting.findRangerSighting(rangerId));
+            return new ModelAndView(model,"rangerSightingView.hbs");
+        },new HandlebarsTemplateEngine());
+
+
+//        3.UPDATE
+//        4.DELETE
+
+        get("/rangers/:id/delete",(request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int rangerId=Integer.parseInt(request.params(":id"));
+            Ranger foundRanger = Ranger.find(rangerId);
+
+            foundRanger.deleteById(rangerId);
+            model.put("rangers", Ranger.all());
+            return new ModelAndView(model,"rangers-view.hbs");
+
+        },new HandlebarsTemplateEngine());
+        get("/rangers/delete",(request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            Ranger.deleteAll();
+            model.put("rangers",Ranger.all());
+            return new ModelAndView(model,"rangers-view.hbs");
+
+        },new HandlebarsTemplateEngine());
     }
 }
