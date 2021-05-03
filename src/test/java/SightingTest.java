@@ -86,8 +86,25 @@ public class SightingTest {
         assertEquals(testSighting, Sighting.all().get(0));
         assertEquals(true, Sighting.all().get(1).equals(anotherSighting));
 
+    }
+    @Test
+    public void find_returnsSightingWithSameId_testSighting() {
+        Sighting testSighting= new Sighting("Tiger", "Zone 12",4567);
 
+        Sighting anotherSighting =new Sighting("Hare", "Zone 14",4587);
+        testSighting.save();
+        anotherSighting.save();
+        assertEquals(Sighting.find(testSighting.getId()).getId(), testSighting.getId());
+    }
+    @Test
+    public void findRangerSightings_returnsARangerSightings_testSighting() {
+        Ranger testRanger = new Ranger("Makaila", "7896","0710617457","makaila@gmail.com");
+        testRanger.save();
+        Sighting testSighting= new Sighting("Tiger", "Zone 12",testRanger.getId());
 
+        testSighting.save();
+
+        assertEquals(testRanger.getId(),Sighting.findRangerSighting(testRanger.getId()).get(0).getRangerId());
     }
 
 }

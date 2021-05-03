@@ -114,4 +114,26 @@ public class Sighting implements DbManagement {
         }
     }
 
+    public  static Sighting find(int id){
+        try(Connection con = DB.sql2o.open()){
+            String sql = "SELECT * FROM sightings WHERE id=:id";
+            Sighting sighting = con.createQuery(sql)
+                    .addParameter("id",id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetchFirst(Sighting.class);
+            return sighting;
+        }
+    }
+
+    public  static List<Sighting> findRangerSighting(int rangerId){
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "SELECT * FROM sightings WHERE ranger_id=:rangerId";
+            return con.createQuery(sql)
+                    .addParameter("rangerId",rangerId)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(Sighting.class);
+
+        }
+    }
+
 }
