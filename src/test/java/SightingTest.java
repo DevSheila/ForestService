@@ -106,5 +106,37 @@ public class SightingTest {
 
         assertEquals(testRanger.getId(),Sighting.findRangerSighting(testRanger.getId()).get(0).getRangerId());
     }
+    @Test
+    public void deleteById_deletesSighting_true() {
+        Sighting testSighting= new Sighting("Tiger", "Zone 12",4567);
+
+        Sighting anotherSighting =new Sighting("Hare", "Zone 14",4587);
+        testSighting.save();
+        anotherSighting.save();
+        anotherSighting.deleteById(anotherSighting.getId());
+
+        assertEquals(1,Sighting.all().size());
+    }
+    @Test
+    public void getSightings_retrievesAllSightingsFromDatabase_SighingsList() {
+        Sighting testSighting= new Sighting("Tiger", "Zone 12",4567);
+
+        Sighting anotherSighting =new Sighting("Hare", "Zone 14",4587);
+        testSighting.save();
+        anotherSighting.save();
+        Object[]  sightings= new Object[] {testSighting,anotherSighting};
+        assertTrue(Sighting.all().containsAll(Arrays.asList(sightings)));
+    }
+    @Test
+    public void deleteAll_deletesAllSightings_true() {
+        Sighting testSighting= new Sighting("Tiger", "Zone 12",4567);
+
+        Sighting anotherSighting =new Sighting("Hare", "Zone 14",4587);
+        testSighting.save();
+        anotherSighting.save();
+        Sighting.deleteAll();
+
+        assertEquals(0,Sighting.all().size());
+    }
 
 }
