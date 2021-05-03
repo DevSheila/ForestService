@@ -86,6 +86,14 @@ public class Sighting implements DbManagement {
                     .executeAndFetch(Sighting.class);
         }
     }
+    public static List<Sighting> allDescOrder(){
+        try(Connection con = DB.sql2o.open()){
+            String sql =" SELECT * FROM sightings ORDER BY sight_time DESC";
+            return con.createQuery(sql)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(Sighting.class);
+        }
+    }
 
     @Override
     public void update() {
