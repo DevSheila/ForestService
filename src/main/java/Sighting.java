@@ -48,6 +48,18 @@ public class Sighting implements DbManagement {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Sighting)) return false;
+        Sighting sighting = (Sighting) o;
+        return Objects.equals(animal_name, sighting.animal_name) && Objects.equals(location_id, sighting.location_id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(animal_name, location_id);
+    }
+    @Override
     public void save() {
 
     }
@@ -56,4 +68,5 @@ public class Sighting implements DbManagement {
     public void update() {
 
     }
+
 }

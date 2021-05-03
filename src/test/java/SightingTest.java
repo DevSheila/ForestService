@@ -43,5 +43,23 @@ public class SightingTest {
 
         assertEquals(testRanger.getId(), testSighting.getRangerId());
     }
+    @Test
+    public void equals_returnsTrueIfInstancesSame_true() {
+        Sighting testSighting= new Sighting("Tiger", "Zone 12",4567);
+
+        Sighting anotherSighting =new Sighting("Tiger", "Zone 12",4567);
+
+
+        assertTrue(testSighting.equals(anotherSighting));
+    }
+    @Test
+    public void equals_returnsFalseIfInstancesDifferent_true() {
+        Sighting testSighting= new Sighting("Tiger", "Zone 12",4567);
+
+        Sighting anotherSighting =new Sighting("Hare", "Zone 14",4587);
+
+
+        assertFalse(testSighting.equals(anotherSighting));
+    }
 
 }
