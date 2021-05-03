@@ -77,7 +77,14 @@ public class Sighting implements DbManagement {
                     .executeUpdate()
                     .getKey();
         }
-
+    }
+    public static List<Sighting> all(){
+        try(Connection con = DB.sql2o.open()){
+            String sql =" SELECT * FROM sightings";
+            return con.createQuery(sql)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(Sighting.class);
+        }
     }
 
     @Override

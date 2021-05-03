@@ -75,5 +75,19 @@ public class SightingTest {
         testSighting.save();
         assertEquals(testSighting.getId(),Sighting.all().get(0).getId());
     }
+    @Test
+    public void all_returnsAllInstancesOfSighting_true() {
+        Sighting testSighting= new Sighting("Tiger", "Zone 12",4567);
+        testSighting.save();
+
+        Sighting anotherSighting =new Sighting("Hare", "Zone 14",4587);
+        anotherSighting.save();
+
+        assertEquals(testSighting, Sighting.all().get(0));
+        assertEquals(true, Sighting.all().get(1).equals(anotherSighting));
+
+
+
+    }
 
 }
