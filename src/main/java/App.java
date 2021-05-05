@@ -1,3 +1,4 @@
+import org.sql2o.Connection;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -68,9 +69,8 @@ public class App {
 
         get("/animals/view", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
-//            model.put("animals",EndangeredAnimal.getAllEndangered());
             model.put("animals", Animal.all());
-            return new ModelAndView(model, "animals-view.hbs");
+            return new ModelAndView(model, "animal-view.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/endangered/form", (request, response) -> {
